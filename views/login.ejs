@@ -1,0 +1,53 @@
+
+<div class="card mb-3">
+  <div class="row g-0 d-flex align-items-center">
+    <div class="col-lg-4 d-none d-lg-flex">
+      <img src="\img\hero-image.png" alt="Welcome" class="w-100 rounded-t-5 rounded-tr-lg-0 rounded-bl-lg-5">
+      
+    </div>
+    <div class="col-lg-8">
+      <div class="card-body py-5 px-md-5">
+        <% if(typeof infoErrorsObj4 != 'undefined') { %>
+        <% if(infoErrorsObj4 != '') { %>
+          <div class="col-8 alert alert-danger" role="alert">
+          <%=infoErrorsObj4[0]  %>
+         
+          </div>
+        <% } }%>
+        <form action="/login" enctype="multipart/form-data" method="POST">
+          <!-- Email input -->
+          <div class="form-outline mb-4">
+            <input type="email" id="form2Example1"  name="email" class="form-control" fdprocessedid="cb19dq">
+            <label class="form-label" for="form2Example1" style="margin-left: 0px;">Email address</label>
+          <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 88.8px;"></div><div class="form-notch-trailing"></div></div></div>
+
+          <!-- Password input -->
+          <div class="form-outline mb-4">
+            <input type="password" name="password" id="form2Example2" class="form-control" fdprocessedid="4amml">
+            <label class="form-label" for="form2Example2" style="margin-left: 0px;">Password</label>
+          <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 64.8px;"></div><div class="form-notch-trailing"></div></div></div>
+
+          <!-- 2 column grid layout for inline styling -->
+          <div class="row mb-4">
+            <div class="col d-flex justify-content-center">
+              <!-- Checkbox -->
+              
+            </div>
+
+           
+          </div>
+
+          <!-- Submit button -->
+          <button type="submit" class="btn btn-primary btn-block mb-4" fdprocessedid="otlbx">Sign in</button>
+          
+          
+  
+        </form>
+        <form action="/register" enctype="multipart/form-data" method="GET"  target="_blank">
+          <button type="submit" class="btn btn-primary  mb-4" fdprocessedid="otlbx">
+            Sign up
+          </button></form>
+      </div>
+    </div>
+  </div> 
+</div>
