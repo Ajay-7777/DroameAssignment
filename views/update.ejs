@@ -1,10 +1,8 @@
 
 <div class="px-4 py-5 my-5 text-center">
     
-  <h1 class="display-5 fw-bold">update Your Recipe</h1>
-  <div class="col-lg-6 mx-auto">
-    <p class="lead">Share your amazing recipies with thousands of web developers accross the world. Fill our form to get started.</p>
-  </div>
+  <h1 class="display-5 fw-bold">update Bookings</h1>
+
 </div>
 
 <div class="row justify-content-center">  
@@ -23,51 +21,51 @@
   
   <div class="col-8">
     <% if(recipe != '') { %>
-        <% recipe.forEach(function(recipe, index){ %>
-    <form action="/update/<%= recipe._id %>" enctype="multipart/form-data" method="POST">
+        <% recipe.forEach(function(Recipe, index){ %>
+    <form action="/update/<%= Recipe._id %>" enctype="multipart/form-data" method="POST">
     
       <div class="row g-3"> 
    
     
 
         <div class="col-12">
-          <label for="name" class="form-label">Recipe Name</label>
-          <input type="text" name="name" id="name" class="form-control" value="<%= recipe.name %>" required>
+          <label for="name" class="form-label">Customer Name</label>
+          <input type="text" name="name" id="name" class="form-control" value="<%= Recipe.name %>" required>
         </div>
         
         <div class="col-12">
-          <label for="description" class="form-label">Description</label>
-          <textarea name="description" id="description" class="form-control" cols="30" rows="4"><%= recipe.description%></textarea>
+          <label for="description" class="form-label">Drone shot description</label>
+          <textarea name="description" id="description" class="form-control" cols="30" rows="4"><%= Recipe.description%></textarea>
         </div>
 
         <div class="col-12">
-          <label for="name" class="form-label">Ingredients</label><br>
-          <small>Example: Ice</small>
+          <label for="name" class="form-label">Types</label><br>
+          <small>Example: Type1</small>
           <div class="ingredientList">
             <div class="ingredeintDiv mb-1">
-              <input type="text" name="ingredients" class="form-control" value="<%= recipe.ingredients %>">
+              <input type="text" name="ingredients" class="form-control" value="<%= Recipe.ingredients %>">
             </div>
           </div>
         </div>
 
         <div class="col-12">
-          <button type="button" class="btn btn-outline-primary" id="addIngredientsBtn">+ Ingredient</button>
+          <button type="button" class="btn btn-outline-primary" id="addIngredientsBtn">+ Type</button>
         </div>
 
         <div class="col-12">
           <label for="category">Select Category</label>
           <select class="form-select form-control" name="category" aria-label="Category">
-            <option selected><%= recipe.category %></option>
+            <option selected><%= Recipe.category %></option>
             <option value="Thai">Thai</option>
-            <option value="American">American</option>
-            <option value="Chinese">Chinese</option>
-            <option value="Mexican">Mexican</option>
-            <option value="Indian">Indian</option>
+            <option value="American">America</option>
+            <option value="Chinese">China</option>
+            <option value="Mexican">Mexico</option>
+            <option value="Indian">India</option>
           </select>
         </div>
     
         <div class="col-12">
-          <button type="submit" class="btn btn-primary">Update Recipe</button>
+          <button type="submit" class="btn btn-primary">Update Bookings</button>
         </div>
 
       </div>

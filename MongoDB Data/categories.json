@@ -2,42 +2,42 @@
   "_id": {
     "$oid": "614dd75a9693912a00f0514d"
   },
-  "name": "American",
-  "image": "american-food.jpg",
+  "name": "America",
+  "image": "american.png",
   "__v": 0
 },{
   "_id": {
     "$oid": "614dd75a9693912a00f0514e"
   },
-  "name": "Chinese",
-  "image": "chinese-food.jpg",
+  "name": "China",
+  "image": "china.jpg",
   "__v": 0
 },{
   "_id": {
     "$oid": "614dd75a9693912a00f0514c"
   },
-  "name": "Thai",
-  "image": "thai-food.jpg",
+  "name": "Thailand",
+  "image": "thailand.jpeg",
   "__v": 0
 },{
   "_id": {
     "$oid": "614dd75a9693912a00f0514f"
   },
-  "name": "Mexican",
-  "image": "mexican-food.jpg",
+  "name": "Mexico",
+  "image": "mexico.jpg",
   "__v": 0
 },{
   "_id": {
     "$oid": "614dd75a9693912a00f05150"
   },
-  "name": "Indian",
-  "image": "indian-food.jpg",
+  "name": "India",
+  "image": "india.jpg",
   "__v": 0
 },{
   "_id": {
     "$oid": "614dd75a9693912a00f05151"
   },
-  "name": "Spanish",
-  "image": "spanish-food.jpg",
+  "name": "Spane",
+  "image": "spane.jpg",
   "__v": 0
 }]

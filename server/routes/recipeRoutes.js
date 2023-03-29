@@ -1,29 +1,23 @@
 const express = require('express');
 const router = express.Router();
-const recipeController = require('../controllers/recipeController');
-const auth=require('../middleware/auth')
+const RecipeController = require('../controllers/RecipeController');
+
 /**
  * App Routes 
 */
-router.get('/', recipeController.homepage);
-router.get('/login',recipeController.login);
-router.post('/login', recipeController.loginonpost);
-router.get('/user', recipeController.loginonpost);
-router.get('/register', recipeController.register);
-router.get('/recipe/:id', recipeController.exploreRecipe );
-router.get('/myrecipe/:id', recipeController.exploreMyRecipe );
-router.get('/categories', recipeController.exploreCategories);
-router.get('/categories/:id', recipeController.exploreCategoriesById);
-router.post('/search', recipeController.searchRecipe);
-router.get('/explore-latest', recipeController.exploreLatest);
-router.get('/explore-random', recipeController.exploreRandom);
-router.get('/submit-recipe',auth, recipeController.submitRecipe);
-router.post('/submit-recipe', recipeController.submitRecipeOnPost);
-router.post('/register', recipeController.Registrationdatasubmit);
-router.get('/logout',auth,recipeController.logout);
-router.get('/userdata',auth, recipeController.userdata);
-router.get('/delete/:id',recipeController.deleteRecipe);
-router.get('/Update/:id',recipeController.updateRecipe); 
-router.post('/Update/:id',recipeController.updateRecipeonpost);
-router.post('/Update/image/:id',recipeController.updateRecipeimage);
+router.get('/', RecipeController.homepage);
+router.get('/Recipe/:id', RecipeController.exploreRecipe );
+router.get('/myRecipe/:id', RecipeController.exploreMyRecipe );
+router.get('/categories', RecipeController.exploreCategories);
+router.get('/categories/:id', RecipeController.exploreCategoriesById);
+router.post('/search', RecipeController.searchRecipe);
+router.get('/explore-latest', RecipeController.exploreLatest);
+router.get('/explore-random', RecipeController.exploreRandom);
+router.get('/submit-Recipe', RecipeController.submitRecipe);
+router.post('/submit-Recipe', RecipeController.submitRecipeOnPost);
+router.get('/userdata', RecipeController.userdata);
+router.get('/delete/:id',RecipeController.deleteRecipe);
+router.get('/Update/:id',RecipeController.updateRecipe); 
+router.post('/Update/:id',RecipeController.updateRecipeonpost);
+router.post('/Update/image/:id',RecipeController.updateRecipeimage);
 module.exports = router;

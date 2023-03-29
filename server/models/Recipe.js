@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const recipeSchema = new mongoose.Schema({
+const RecipeSchema = new mongoose.Schema({
   name: {
     type: String,
     required: 'This field is required.'
@@ -9,15 +9,12 @@ const recipeSchema = new mongoose.Schema({
     type: String,
     required: 'This field is required.'
   },  
-  email: {
-    type: String,
-    required: 'This field is required.'
-  },
+ 
   ingredients: {
     type: Array,
     required: 'This field is required.'
   },
-  category: {
+  category: { 
     type: String,
     enum: ['Thai', 'American', 'Chinese', 'Mexican', 'Indian'],
     required: 'This field is required.'
@@ -27,8 +24,8 @@ const recipeSchema = new mongoose.Schema({
     required: 'This field is required.'
   },
 });
-//recipeSchema.index({ name: 'text'});
+//RecipeSchema.index({ name: 'text'});
  // WildCard Indexing
-//recipeSchema.index({ "$**" : 'text' });
+//RecipeSchema.index({ "$**" : 'text' });
 
-module.exports = mongoose.model('Recipe', recipeSchema);
+module.exports = mongoose.model('Recipe', RecipeSchema);
