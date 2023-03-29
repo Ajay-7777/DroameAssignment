@@ -2,7 +2,7 @@ require('../models/database');
 const Category = require('../models/Category');
 const Recipe = require('../models/Recipe');
 const {json}=require('express');
-const jwt=require("jsonwebtoken");
+
 
 /**
  * GET /
@@ -18,7 +18,7 @@ exports.homepage = async(req, res) => {
     const american = await Recipe.find({ 'category': 'American' }).limit(limitNumber);
     const chinese = await Recipe.find({ 'category': 'Chinese' }).limit(limitNumber);
     const food = { latest, thai, american, chinese };
-   res.render('index', { title: 'Recipe Blog - Home', categories, food } );
+   res.render('index', {  categories, food } );
   } catch (error) {
     res.status(500).send({message: error.message || "Error Occured" });
   }
@@ -33,7 +33,7 @@ exports.exploreCategories = async(req, res) => {
     const limitNumber = 20;
     const categories = await Category.find({}).limit(limitNumber);
 
-    res.render('categories', { title: 'Recipe Blog - Categoreis', categories } );
+    res.render('categories', {  categories } );
    
   } catch (error) { 
     res.status(500).send({message: error.message || "Error Occured" });
@@ -51,7 +51,7 @@ exports.exploreCategoriesById = async(req, res) => {
     const limitNumber = 20;
     const categoryById = await Recipe.find({ 'category': categoryId }).limit(limitNumber);
   
-    res.render('categories', { title: 'Recipe Blog - Categoreis', categoryById } );
+    res.render('categories', {  categoryById } );
   } catch (error) {
     res.status(500).send({message: error.message || "Error Occured" });
   }
@@ -67,7 +67,7 @@ exports.exploreRecipe = async(req, res) => {
     console.log(recipeId)
     const recipe = await Recipe.findById(recipeId);
     console.log(recipe)
-    res.render('recipe', { title: 'Recipe Blog - Recipe', recipe } );
+    res.render('recipe', {  recipe } );
   } catch (error) {
     res.status(500).send({message: error.message || "Error Occured" });
   }
@@ -83,7 +83,7 @@ exports.exploreMyRecipe = async(req, res) => {
     console.log(RecipeId)
     const recipe = await Recipe.findById(RecipeId);
 
-    res.render('myrecipe', { title: 'Recipe Blog - Recipe', recipe } );
+    res.render('myrecipe', {  recipe } );
   } catch (error) {
     res.status(500).send({message: error.message || "Error Occured" });
   
@@ -104,7 +104,7 @@ console.log(newRecipe,Recipewithingredients)
      let recipe =[...newRecipe,...Recipewithingredients]
     
 
-    res.render('search', { title: 'Recipe Blog - Search',recipe } );
+    res.render('search', { recipe } );
   } catch (error) {
     res.status(500).send({message: error.message || "Error Occured" });
   }
@@ -122,7 +122,7 @@ exports.exploreLatest = async(req, res) => {
     const limitNumber = 20;
     const recipe = await Recipe.find({}).sort({ _id: -1 }).limit(limitNumber);
   
-    res.render('explore-latest', { title: 'Recipe Blog - Explore Latest' ,recipe } );
+    res.render('explore-latest', {  recipe } );
   } catch (error) {
     res.status(500).send({message: error.message || "Error Occured" });
   }
@@ -140,7 +140,7 @@ exports.exploreRandom = async(req, res) => {
     let random = Math.floor(Math.random() * count);
     let recipe = await Recipe.findOne().skip(random).exec();
   
-    res.render('explore-random', { title: 'Recipe Blog - Explore Latest', recipe } );
+    res.render('explore-random', {  recipe } );
   } catch (error) {
     res.status(500).send({message: error.message || "Error Occured" });
   }
@@ -154,7 +154,7 @@ exports.exploreRandom = async(req, res) => {
 exports.userdata = async(req, res) => {
   try {  
     const userRecipe=await Recipe.find({});
-    res.status(201).render('user', { title: 'Recipe Blog - Your Recipe', userRecipe });
+    res.status(201).render('user', {  userRecipe });
   } catch (error) {
     res.status(500).redirect("/login");
   }
@@ -167,7 +167,7 @@ exports.deleteRecipe = async(req, res) => {
     // console.log(RecipeId)
      await Recipe.deleteOne({_id:RecipeId}); 
      const userRecipe=await Recipe.find({})
-     res.status(201).render('user', { title: 'Recipe Blog - Your Recipe', userRecipe });
+     res.status(201).render('user', {  userRecipe });
     
   } catch (error) {
     res.status(500).send({message: error.message || "Error Occured" });
@@ -183,7 +183,7 @@ exports.updateRecipe=async(req,res)=>{
 const Recipe_id=req.params.id;
 const recipe=await Recipe.find({_id:Recipe_id});
 
-res.status(201).render('update',{title :'Recipe Blog - Update Recipe',recipe,infoErrorsObj1,infoSubmitObj1})
+res.status(201).render('update',{recipe,infoErrorsObj1,infoSubmitObj1})
 }
 
 /**
@@ -193,7 +193,7 @@ res.status(201).render('update',{title :'Recipe Blog - Update Recipe',recipe,inf
 exports.submitRecipe = async(req, res) => {
   const infoErrorsObj = req.flash('infoErrors');
   const infoSubmitObj = req.flash('infoSubmit');
-  res.render('submit-Recipe', { title: 'Recipe Blog - Submit Recipe', infoErrorsObj, infoSubmitObj  } );
+  res.render('submit-Recipe', {  infoErrorsObj, infoSubmitObj  } );
 }
 
 /**
@@ -231,11 +231,10 @@ exports.submitRecipeOnPost = async(req, res) => {
     
     await newRecipe.save();
 
-    req.flash('infoSubmit', 'Recipe has been added.');
+    req.flash('infoSubmit', 'Booking Successful.');
    
     res.redirect('/userdata');
   } catch (error) {
-   
     req.flash('infoErrors', error);
     res.redirect('/submit-Recipe');
   }
@@ -295,7 +294,7 @@ exports.updateRecipeonpost = async(req, res) => {
       category: req.body.category,
     });
     // console.log("after update",Recipe)
-    req.flash('infoSubmit', 'Recipe has been updated.')
+    req.flash('infoSubmit', 'Booking Successful')
   
     res.status(200).redirect(`/update/${req.params.id}`);
   } catch (error) {
@@ -304,123 +303,11 @@ exports.updateRecipeonpost = async(req, res) => {
     res.redirect('/');
   }
 }
-/**
- * GET /login
- *login
-*/
 
 
 
 
 
-/**
- * POST /submit-registration data
- * Submit data
-*/
 
 
- 
-
-
-
-
-
-// Delete Recipe
-// async function deleteRecipe(){
-//   try {
-//     await Recipe.deleteOne({ name: 'New Recipe From Form' });
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
-// deleteRecipe();
-
-
-// Update Recipe
-// async function updateRecipe(){
-//   try {
-//     const res = await Recipe.updateOne({ name: 'New Recipe' }, { name: 'New Recipe Updated' });
-//     res.n; // Number of documents matched
-//     res.nModified; // Number of documents modified
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
-// updateRecipe();
-
- 
-/**
- * Dummy Data Example 
-*/
-
-// async function insertDymmyCategoryData(){
-//   try {
-//     await Category.insertMany([
-//       {
-//         "name": "Thai",
-//         "image": "thai-food.jpg"
-//       },
-//       {
-//         "name": "American",
-//         "image": "american-food.jpg"
-//       }, 
-//       {
-//         "name": "Chinese",
-//         "image": "chinese-food.jpg"
-//       },
-//       {
-//         "name": "Mexican",
-//         "image": "mexican-food.jpg"
-//       }, 
-//       {
-//         "name": "Indian",
-//         "image": "indian-food.jpg"
-//       },
-//       {
-//         "name": "Spanish",
-//         "image": "spanish-food.jpg"
-//       }
-//     ]);
-//   } catch (error) {
-//     console.log('err', + error)
-//   }
-// }
-
-// insertDymmyCategoryData();
-
-
-// async function insertDymmyRecipeData(){
-//   try {
-//     await Recipe.insertMany([
-//       { 
-//         "name": "Recipe Name Goes Here",
-//         "description": `Recipe Description Goes Here`,
-//         "email": "Recipeemail@raddy.co.uk",
-//         "ingredients": [
-//           "1 level teaspoon baking powder",
-//           "1 level teaspoon cayenne pepper",
-//           "1 level teaspoon hot smoked paprika",
-//         ],
-//         "category": "American", 
-//         "image": "southern-friend-chicken.jpg"
-//       },
-//       { 
-//         "name": "Recipe Name Goes Here",
-//         "description": `Recipe Description Goes Here`,
-//         "email": "Recipeemail@raddy.co.uk",
-//         "ingredients": [
-//           "1 level teaspoon baking powder",
-//           "1 level teaspoon cayenne pepper",
-//           "1 level teaspoon hot smoked paprika",
-//         ],
-//         "category": "American", 
-//         "image": "southern-friend-chicken.jpg"
-//       },
-//     ]);
-//   } catch (error) {
-//     console.log('err', + error)
-//   }
-// }
-
-// insertDymmyRecipeData();
 

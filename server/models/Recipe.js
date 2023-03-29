@@ -11,7 +11,7 @@ const RecipeSchema = new mongoose.Schema({
   },  
  
   ingredients: {
-    type: Array,
+    type: Array, 
     required: 'This field is required.'
   },
   category: { 
